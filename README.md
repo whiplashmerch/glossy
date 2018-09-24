@@ -72,7 +72,7 @@ Tested         Passed         Failed         % Failure
 384            384            0              0.000          
 ```
 
-Nicele done! You're a hero and a scholar.
+Nicely done! You're a hero and a scholar.
 
 ## Tableize
 
