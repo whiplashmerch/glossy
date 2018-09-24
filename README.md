@@ -19,7 +19,7 @@ Or install it yourself as:
 
 ## Usage
 
-Let's assume that you've got a table called `User`, and `:full_name` should always be equal to `:first_name` + `:last_name`. Glossy will help you test your records, and if you'd like fix them.
+Let's assume that you've got a table called `User`, and `:full_name` should always be equal to `:first_name` + `:last_name`. Glossy will help you test your records, and if you'd like, fix them.
 
 Subclass Glossy and declare `:check` and `:fix` instance methods:
 
@@ -44,7 +44,7 @@ Create an instance of glossy and reference your newly created class:
 glossy = Glossy::Base.new(fixer: FullName)
 ```
 
-You can now run check for failures on ID's of your choice:
+You can now check for failures on ID's of your choice:
 
 ```ruby
 suspect_ids = [User.where(:created_at > Time.now() - 1.day).pluck(:id)]
@@ -72,11 +72,18 @@ Tested         Passed         Failed         % Failure
 384            384            0              0.000          
 ```
 
-Good job, you fixed the failures! You've also got statistical evidence now to help you understand if further efforts to prevent the problem are effective.
+Nicele done! You're a hero and a scholar.
+
+## TODO
+- Benchmarking
+- Animated Status Display
+- Config
+- Save logs to dir in configs 
+
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 

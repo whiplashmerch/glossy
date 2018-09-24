@@ -7,7 +7,7 @@ require 'glossy/base'
 Gem::Specification.new do |spec|
   spec.name          = "glossy"
   spec.version       = Glossy::VERSION
-  spec.authors       = ["James Marks, Kevin Young"]
+  spec.authors       = ["James Marks"]
   spec.email         = ["marks@vgkids.com"]
 
   spec.summary       = %q{Summarize and fix what's broken.}

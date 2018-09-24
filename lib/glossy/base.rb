@@ -1,5 +1,7 @@
 module Glossy
 
+ require 'glossy/report'
+
   class Base
 
     attr_accessor :results, :fixer, :details
@@ -9,34 +11,16 @@ module Glossy
       self.details = Array.new
       disable_active_record_logging
       print_logo
-      # TODO: write logs to a file and allow it be dumped with gloss.logs
     end
 
-
-
-
-
-################################################################
-################################################################
-
-
-
-
-################################################################
-################################################################
-
-
-
-
-    # If no failed_ids param is sent, fallback to the saved results
-    def fix_all()
+    def fix_all
       print "No failures to fix" unless results.size > 0
       self.started_at = Time.now
       failed_ids.collect{ |id| print "Attempting to fix ID #{id}..."; fix(id); print "Done\n" }
       retest_failures
     end
 
-    def retest_failures()
+    def retest_failures
       check_all(failed_ids)
     end
 
