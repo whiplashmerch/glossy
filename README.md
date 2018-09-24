@@ -74,7 +74,25 @@ Tested         Passed         Failed         % Failure
 
 Nicele done! You're a hero and a scholar.
 
+## Tableize
+
+Glossy can also make an easy-to-read table out an array of hashes:
+```ruby
+
+out = [{name: "Meg White", band: "White Stripes"}, {name: "Robert Plant", band: "Led Zepplin"}, {name: "Robert Smith", band: "The Cure"}]
+print Glossy::Base.tableize(out, column_width: 20)
+
+```
+
+## Note
+Glossy disables ActiveRecord logging for your session when it starts. You can reenable it:
+```ruby
+Glossy::Base.enable_active_record_logging
+```
+
 ## TODO
+- Auto-detect table width for columns
+- Tableizer support for ActiveRecord
 - Benchmarking
 - Animated Status Display
 - Config

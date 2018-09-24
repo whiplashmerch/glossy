@@ -40,10 +40,10 @@ module Glossy
         return nil
       end
 
-      def toWidth(str, width)
+      def toWidth(str, width, fill=' ')
         out = str.dup
         while out.size < width do
-          out << " "
+          out << fill
         end
         return out
       end

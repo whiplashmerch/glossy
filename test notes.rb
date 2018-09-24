@@ -23,5 +23,3 @@ glossy.check_all(ids)
 
 Glossy::Base.getColumns([{:name => "James"}]) == [:name]
 Glossy::Base.getColumns({:name => "James"}) == [:name]
-
-
