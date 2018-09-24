@@ -23,3 +23,9 @@ glossy.check_all(ids)
 
 Glossy::Base.getColumns([{:name => "James"}]) == [:name]
 Glossy::Base.getColumns({:name => "James"}) == [:name]
+
+
+# We'll to handle ActiveRecord as it's own edge:
+# users = User.all.limit(15)
+# users.first.class.superclass
+#> ActiveRecord::Base

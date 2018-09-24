@@ -21,19 +21,23 @@ Or install it yourself as:
 
 Let's assume that you've got a table called `User`, and `:full_name` should always be equal to `:first_name` + `:last_name`. Glossy will help you test your records, and if you'd like, fix them.
 
-Subclass Glossy and declare `:check` and `:fix` instance methods:
+Subclass Glossy and declare `:check` and `:fix` class methods:
 
 ```ruby
-class FullName < Glossy
+class FullName < Glossy::Base
 
-  def check(id) #return true if row is broken
-    user = User.find(id)
-    return user.full_name != [user.first_name, user.last_name].join(' ')
-  end
+  class << self
 
-  def fix(id)
-    user = User.find(id)
-    user.update_attribute(:full_name, [user.first_name, user.last_name].join(' '))
+    def check(id) #return true if row is broken
+      user = User.find(id)
+      return user.full_name != [user.first_name, user.last_name].join(' ')
+    end
+
+    def fix(id)
+      user = User.find(id)
+      user.update_attribute(:full_name, [user.first_name, user.last_name].join(' '))
+    end
+
   end
 end
 ```
@@ -47,7 +51,7 @@ glossy = Glossy::Base.new(fixer: FullName)
 You can now check for failures on ID's of your choice:
 
 ```ruby
-suspect_ids = [User.where(:created_at > Time.now() - 1.day).pluck(:id)]
+suspect_ids = User.active.pluck(:id)
 glossy.check_all(suspect_ids)
 => 
 Tested         Passed         Failed         % Failure      
