@@ -76,11 +76,17 @@ Nicele done! You're a hero and a scholar.
 
 ## Tableize
 
-Glossy can also make an easy-to-read table out an array of hashes:
+Glossy can also make an easy-to-read table from an array of hashes:
 ```ruby
 
-out = [{name: "Meg White", band: "White Stripes"}, {name: "Robert Plant", band: "Led Zepplin"}, {name: "Robert Smith", band: "The Cure"}]
-print Glossy::Base.tableize(out, column_width: 20)
+artists = [{name: "Meg White", band: "White Stripes"}, {name: "Robert Plant", band: "Led Zepplin"}, {name: "Robert Smith", band: "The Cure"}]
+print Glossy::Base.tableize(artists, column_width: 20)
+
+name                band                
+Meg White           White Stripes       
+Robert Plant        Led Zepplin         
+Robert Smith        The Cure            
+
 
 ```
 
