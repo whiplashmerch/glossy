@@ -4,7 +4,7 @@ module Glossy
 
   class Base
 
-    attr_accessor :results, :fixer, :details
+    attr_accessor :results, :fixer, :details, :started_at, :completed_at
 
     def initialize(fixer: nil)
       self.fixer = fixer
@@ -27,6 +27,7 @@ module Glossy
     def check_all(ids)
       return unless ids.is_a?(Array)
       print "Beginning check of #{ids.size}\n"
+      self.started_at = Time.now
       self.results = []
       ids.each_with_index do |id, i|
         print "Checking ID #{id}...\n"
