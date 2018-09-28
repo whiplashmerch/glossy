@@ -1,22 +1,20 @@
 module Glossy
-
- require 'glossy/report'
+  require 'glossy/report'
 
   class Base
-
     attr_accessor :results, :fixer, :details, :started_at, :completed_at
 
     def initialize(fixer: nil)
       self.fixer = fixer
-      self.details = Array.new
+      self.details = []
       disable_active_record_logging
       print_logo
     end
 
     def fix_all
-      print "No failures to fix" unless results.size > 0
+      print 'No failures to fix' if results.empty?
       self.started_at = Time.now
-      failed_ids.collect{ |id| print "Attempting to fix ID #{id}..."; fix(id); print "Done\n" }
+      failed_ids.collect { |id| print "Attempting to fix ID #{id}..."; fix(id); print "Done\n" }
       retest_failures
     end
 
@@ -31,7 +29,7 @@ module Glossy
       self.results = []
       ids.each_with_index do |id, i|
         print "Checking ID #{id}...\n"
-        results << {id => self.fixer.check(id) }
+        results << { id => fixer.check(id) }
         self.completed_at = Time.now if ids.size == (i + 1)
       end
       summarize
@@ -51,18 +49,12 @@ module Glossy
       ActiveRecord::Base.logger = Logger.new(STDOUT) if defined? ActiveRecord
     end
 
-    def retest_failures
-      self.check_all(failed_ids)
-    end
-
     def failed_ids
-      results.collect{ |r| r.keys[0] if r.values[0] != false }.compact.uniq
+      results.collect { |r| r.keys[0] if r.values[0] }.compact.uniq
     end
 
     def passed_ids
-      results.collect{ |r| r.keys[0] if r.values[0] == false }.compact.uniq
+      results.collect { |r| r.keys[0] unless r.values[0] }.compact.uniq
     end
-
   end
-
 end
