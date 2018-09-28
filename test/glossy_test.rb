@@ -15,6 +15,7 @@ class GlossyTest < Minitest::Test
     assert glossy.completed_at.is_a? Time
     assert glossy.failed_ids == [5, 6, 7, 8, 9]
     assert glossy.passed_ids == [0, 1, 2, 3, 4]
+    assert_nil glossy.fix_all
   end
 
 end

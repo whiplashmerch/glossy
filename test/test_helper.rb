@@ -12,7 +12,7 @@ class LessThan5 < Glossy::Base
     end
 
     def fix(id)
-      print "Sorry boss, no can do"
+      print "Sorry boss, no can do. "
     end
 
   end

@@ -14,7 +14,7 @@ module Glossy
     def fix_all
       print 'No failures to fix' if results.empty?
       self.started_at = Time.now
-      failed_ids.collect { |id| print "Attempting to fix ID #{id}..."; fix(id); print "Done\n" }
+      failed_ids.collect { |id| print "Attempting to fix ID #{id}..."; fixer.fix(id); print "Done\n" }
       retest_failures
     end
 
@@ -24,7 +24,7 @@ module Glossy
 
     def check_all(ids)
       return unless ids.is_a?(Array)
-      print "Beginning check of #{ids.size}\n"
+      print "\nBeginning check of #{ids.size}\n"
       self.started_at = Time.now
       self.results = []
       ids.each_with_index do |id, i|
