@@ -55,8 +55,8 @@ module Glossy
       end
 
       def delimit(str, delimiter)
-          str.to_s << delimiter.to_s
-          return str
+          out = str.to_s + delimiter.to_s
+          return out
       end
     end
 

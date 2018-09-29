@@ -17,6 +17,10 @@ class ReportTest < Minitest::Test
 
   def test_delimit
     assert Glossy::Base.delimit("yeah", ",") == "yeah,"
+
+    original_string = "yup"
+    assert Glossy::Base.delimit(original_string, ",") == 'yup,'
+    assert original_string == "yup"
   end
 
   def test_get_columns_accepts_array
