@@ -18,4 +18,15 @@ class GlossyTest < Minitest::Test
     assert_nil glossy.fix_all
   end
 
+  def test_instance_can_check
+    glossy = Glossy::Base.new(fixer: LessThan5)
+    glossy.check(4)
+  end
+
+  def test_instance_can_check
+    glossy = Glossy::Base.new(fixer: LessThan5)
+    glossy.fix(4)
+  end
+
+
 end

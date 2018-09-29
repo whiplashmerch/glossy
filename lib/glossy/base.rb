@@ -30,9 +30,17 @@ module Glossy
       ids.each_with_index do |id, i|
         print "Checking ID #{id}...\n"
         results << { id => fixer.check(id) }
-        self.completed_at = Time.now if ids.size == (i + 1)
       end
+      self.completed_at = Time.now
       summarize
+    end
+
+    def check(id)
+      fixer.check(id)
+    end
+
+    def fix(id)
+      fixer.fix(id)
     end
 
     def print_logo
